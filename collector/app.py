@@ -1,14 +1,16 @@
 import wx
-from collection import Collection
-from ui import UI
+from collector.collection import Collection
+from collector.ui import UI
+
+COLLECTION_FILE_PATH = 'E:\DaveSync\Stamps\stamps.csv'
 
 if __name__ == "__main__":
     collection = Collection()
-    collection.readCsv('data.csv')
+    collection.readCsv(COLLECTION_FILE_PATH)
     collection.buildIndex()
     
     app = wx.App()
-    form = MyForm(collection)
+    form = UI(collection)
     frame = form.Show()
     
     app.MainLoop()

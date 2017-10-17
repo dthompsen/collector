@@ -7,7 +7,7 @@ class Collection:
         self.index = {}
     
     def readCsv(self, fname):
-        with open(fname, "rb") as f_obj:
+        with open(fname, "r") as f_obj:
             reader = csv.DictReader(f_obj)
             self.colnames = reader.fieldnames
             for line in reader:
@@ -29,7 +29,7 @@ class Collection:
             rownum = rownum + 1
 
     def displayIndex(self):
-        for k, v in index.items():
+        for k, v in self.index.items():
             print(k,v)
 
     def find(self, query):
@@ -47,11 +47,7 @@ class Collection:
             else:
                 # stop when any word from query is not in index - each word must be found
                 break
-        return results
-
-    def (self, query):
-        
-
+        return list(results)
 
     def displayHeader(self):
         print('Id      Country          Catalog   Title                           Album')
@@ -78,7 +74,7 @@ class Collection:
             self.displayRow(row)
 
     def writeCsv(self, fname):
-        with open(fname, "wb") as f_obj:
+        with open(fname, "w") as f_obj:
             writer = csv.DictWriter(f_obj, fieldnames=self.colnames)
             writer.writeheader()
             for row in self.rows:
